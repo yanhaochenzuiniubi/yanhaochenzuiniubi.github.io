@@ -80,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/24/hello-world/">Hello World</a>
+      <a class="article-title" href="/2020/11/24/hello-world/">手机ADB命令与Monkey，作为一个安卓开发人员不懂adb可还行？φ(*￣0￣)</a>
     </h1>
   
 
@@ -88,24 +88,64 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <p>ADB命令为Android调试桥(A)</p>
+<p>ADB为Android调试桥(Android Debug Bridge)，没啥可讲的了哈哈哈</p>
+<h2 id="1-ADB启动示例"><a href="#1-ADB启动示例" class="headerlink" title="1.ADB启动示例"></a>1.ADB启动示例</h2><h3 id="启动一个adb客户端，此客户端首先先检查是否有已经运行adb进程，如果没有，它将启动服务器进程，ps-手机要先打开开发者模式，如果有模拟器，adb将与本机TCP端口绑定。"><a href="#启动一个adb客户端，此客户端首先先检查是否有已经运行adb进程，如果没有，它将启动服务器进程，ps-手机要先打开开发者模式，如果有模拟器，adb将与本机TCP端口绑定。" class="headerlink" title="启动一个adb客户端，此客户端首先先检查是否有已经运行adb进程，如果没有，它将启动服务器进程，ps:手机要先打开开发者模式，如果有模拟器，adb将与本机TCP端口绑定。"></a>启动一个adb客户端，此客户端首先先检查是否有已经运行adb进程，如果没有，它将启动服务器进程，ps:手机要先打开开发者模式，如果有模拟器，adb将与本机TCP端口绑定。</h3><h3 id="介绍一些windows和Linux-ubuntu20-04为例-安装adb的方法"><a href="#介绍一些windows和Linux-ubuntu20-04为例-安装adb的方法" class="headerlink" title="介绍一些windows和Linux(ubuntu20.04为例)安装adb的方法"></a>介绍一些windows和Linux(ubuntu20.04为例)安装adb的方法</h3><p>以Ubuntu为例，超级简单</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get update</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get upgrade</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install adb 或者 $ sudo apt-get install android-tools-adb</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>下面以windows为例子，点击RELEASE NOTES，先进入<a target="_blank" rel="noopener" href="https://developer.android.com/studio?hl=en,%E5%BA%94%E8%AF%A5%E6%B2%A1%E6%9C%89%E8%A2%AB%E5%A2%99%E5%93%88%E5%93%88">https://developer.android.com/studio?hl=en,应该没有被墙哈哈</a></p>
+<p>zf留后台好像。</p>
+<p>![](D:\blog img\捕获.PNG)</p>
+<p>接下来点击SDK平台工具，并且下载适用于windows巴拉巴拉的。。。。然后，解压到c盘目录下就可</p>
+<p>![](D:\blog img\捕获2.PNG)</p>
+<h3 id="1-adb用法案例"><a href="#1-adb用法案例" class="headerlink" title="1.adb用法案例"></a>1.adb用法案例</h3><p>查看设备信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices <span class="comment">#用来查看设备信息,exit退出.</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\yanhaochen\Desktop\捕获.PNG2.PNG"></p>
+<h3 id="进入Shell"><a href="#进入Shell" class="headerlink" title="进入Shell"></a>进入Shell</h3><p>输入shell，并且可以查看手机文件系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell <span class="comment">#android底层是Linux系统，shell为交互.我的是oppo a79t</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\yanhaochen\Desktop\捕获.PNG"></p>
+<h3 id="其余命令"><a href="#其余命令" class="headerlink" title="其余命令"></a>其余命令</h3><p>显示手机中所有的应用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm list packages  | grep 包名 <span class="comment">#过滤</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p><img src="C:\Users\yanhaochen\Desktop\捕获.PNG4.PNG"></p>
+<p>查看手机电池情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell dumpsys battery </span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\yanhaochen\Desktop\捕获.PNG3.PNG"></p>
+<p>卸载软件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> adb uninstall 包名 <span class="comment">#卸载我就不列举了</span></span></span><br></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> adb install 包名</span> </span><br></pre></td></tr></table></figure>
+
+<p>屏幕截图</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> adb exec-out screencap -p &gt; xx.png <span class="comment">#&gt;为导出并且保存到(/sdcard)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>重新挂载，关机和重启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> adb remount -s 选择设备</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> adb reboot <span class="comment">#重启</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> adb reboot -p <span class="comment">#关机</span></span></span><br></pre></td></tr></table></figure>
+
+<p>屏幕录制</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> adb shell screenrecord /sdcard/xx.mp4 <span class="comment">#导出的话adb pull /sdcard/xx.mp4  adb pull拉出文件 adb push推出文件</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Monkey-应用程序"><a href="#2-Monkey-应用程序" class="headerlink" title="2.Monkey 应用程序"></a>2.Monkey 应用程序</h2><p>   Monkey是一个程序，运行在设备上 并且生成伪随机数的用户事件流，可以使用Monkey以随机但可重复的方式对您正在开发的应用程序进行压力测试（位于Android系统中 /system/bin../Monkey 文件，jar包位于Android /system/framework../Monkey.jar)…….嗯，就是手机乱点那种</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /sys</span><br><span class="line">cd /system/</span><br><span class="line">cd bin</span><br><span class="line">monkey</span><br><span class="line"><span class="meta">#</span><span class="bash">启动步骤，1.连接移动设备（成功后）</span></span><br><span class="line"><span class="meta">#</span><span class="bash">		 2.adb shell</span></span><br><span class="line"><span class="meta">#</span><span class="bash">         3.进入到指定目录 <span class="built_in">cd</span> /system/bin</span></span><br><span class="line"><span class="meta">#</span><span class="bash">         4. monkey命令</span></span><br></pre></td></tr></table></figure>
+
+<p>伪随机数生成种子</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> adb shell monkey -s &lt;seed&gt; &lt;event-count&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> adb shell monkey -s 666 100</span></span><br></pre></td></tr></table></figure>
+
+<p>设置时间间隔</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> adb shell monkey -throttle 3000 5 <span class="comment">#3000为3秒</span></span></span><br></pre></td></tr></table></figure>
+
+<p>设置触摸事件百分比</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> adb shell monkey --pct-touch 100 200</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yanhaochenzuiniubi.github.io/2020/11/24/hello-world/" data-id="ckhxe1c7s0000csvd35mg03lh" class="article-share-link">Share</a>
+      <a data-url="https://yanhaochenzuiniubi.github.io/2020/11/24/hello-world/" data-id="ckhxgz0iy0000asvd3czi0nsk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,7 +186,7 @@
       <ul>
         
           <li>
-            <a href="/2020/11/24/hello-world/">Hello World</a>
+            <a href="/2020/11/24/hello-world/">手机ADB命令与Monkey，作为一个安卓开发人员不懂adb可还行？φ(*￣0￣)</a>
           </li>
         
       </ul>
