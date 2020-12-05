@@ -66,6 +66,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hello-world5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/hello-world5.html" class="article-date">
+  <time datetime="2020-12-05T09:22:06.000Z" itemprop="datePublished">2020-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/hello-world5.html">本教程告诉你Windows10如何进行宽带的开机自连</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Windows-10运用批处理脚本来进行开机宽带的自连接"><a href="#Windows-10运用批处理脚本来进行开机宽带的自连接" class="headerlink" title="Windows 10运用批处理脚本来进行开机宽带的自连接"></a>Windows 10运用批处理脚本来进行开机宽带的自连接</h1><p>利用批处理bat的时候，是时候用到 Rasdial 这个命令，该命令为查看RAS连接状况，根据你是否连接到服务器，这个不多解释。（吐槽一下,Linux可以自连的，哎)</p>
+<p>下面给个例子，在windows10桌面上新建一个adsl.txt的文件，并且写入这些代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off  %让cmd不显示此盘符%</span><br><span class="line">chcp 65001 %让cmd 显示utf-8形式，不然宽带连接汉语是乱码，无法进行宽带连接%</span><br><span class="line">rasdial 宽带连接 18776750834 228701 %那个宽带连接是你的宽带连接的名称%</span><br><span class="line">pause&gt;nul %防闪退%</span><br></pre></td></tr></table></figure>
+
+<p><img src="/hello-world5%5C1.PNG"></p>
+<p>写入以后放入开机的启动的文件夹中，后缀改为cmd或者bat。</p>
+<p><img src="/hello-world5%5C2.PNG"></p>
+<p>然后重启,就会弹出一个黑框就可以自己连接了。解放双手。</p>
+<h2 id="附：如果忘记了宽带的密码怎么办，答-可以下载ADSL密码查看器"><a href="#附：如果忘记了宽带的密码怎么办，答-可以下载ADSL密码查看器" class="headerlink" title="附：如果忘记了宽带的密码怎么办，答:可以下载ADSL密码查看器"></a>附：如果忘记了宽带的密码怎么办，答:可以下载ADSL密码查看器</h2><p>（再次吐槽，Linux可以查看密码)</p>
+<p>下载地址:<a target="_blank" rel="noopener" href="http://www.pc6.com/softview/SoftView_38538.html">http://www.pc6.com/softview/SoftView_38538.html</a> (关掉windows防护)</p>
+<p>打开解压就可以使用，就会有账户或者密码，这里不演示了。</p>
+<h2 id="附2：Linux下如何进行宽带连接，（Ubuntu20-04为例DSL宽带连接"><a href="#附2：Linux下如何进行宽带连接，（Ubuntu20-04为例DSL宽带连接" class="headerlink" title="附2：Linux下如何进行宽带连接，（Ubuntu20.04为例DSL宽带连接)"></a>附2：Linux下如何进行宽带连接，（Ubuntu20.04为例DSL宽带连接)</h2><p>（由于本博主操作不当，水平不足，在使用apt包管理器的时候不小心搞崩了,原来的电脑是双系统，现只说方法。)</p>
+<p>首先 Ctrl+Alt+T打开终端</p>
+<p>输入 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">nmcli con edit type pppoe con-name &quot;oliver&quot;</span><br><span class="line"><span class="meta">nmcli&gt;</span><span class="bash"><span class="built_in">set</span> pppoe.username 宽带账号</span></span><br><span class="line"><span class="meta">nmcli&gt;</span><span class="bash"><span class="built_in">set</span> pppoe.password 宽带密码</span></span><br><span class="line">..&gt; save</span><br><span class="line">..&gt;yes</span><br><span class="line">..</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">quit</span></span><br></pre></td></tr></table></figure>
+
+<p>然后打开ubuntu的右上角的宽带连接，在输入密码和账号的地方 ，到最后输入一个yd(移动) dx(电信) lt(联通)</p>
+<p>就可以上网了，恭喜。✌</p>
+<h2 id="附3：以计算机网络角度来解释一下ADSL的原理"><a href="#附3：以计算机网络角度来解释一下ADSL的原理" class="headerlink" title="附3：以计算机网络角度来解释一下ADSL的原理"></a>附3：以计算机网络角度来解释一下ADSL的原理</h2><p>DSL顾名思义是一种数位式的用户线路，基于普通电话线的宽带接入技术，属于专线上网方式，而DSL系统有许多种，一般通常被称为xDSL。ADSL是xDSL技术之一，非对称的DSL，ADSL直接翻译字义即是（非对称的数位用户线路），利用电话线的接入，可以上网和打电话，目前运营商主要在用的宽带接入技术主要就是ADSL。说白了，就是家用普通宽带。</p>
+<p>（下载速率大于4Mbps，上行大于1Mbps的都可视为宽带）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yanhaochenzuiniubi.github.io/hello-world5.html" data-id="ckibk43oq0005ccvdc99gfvtd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hello-world4.html" class="article-date">
@@ -116,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yanhaochenzuiniubi.github.io/hello-world4.html" data-id="ckibk0v970005xsvd3p66cjvj" class="article-share-link">Share</a>
+      <a data-url="https://yanhaochenzuiniubi.github.io/hello-world4.html" data-id="ckibk43oo0004ccvd8s700g0u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%8A%E5%84%BF%E6%95%99%E5%A4%A7%E5%AE%B6%E5%AE%89%E8%A3%85jdk/" rel="tag">今儿教大家安装jdk</a></li></ul>
@@ -168,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yanhaochenzuiniubi.github.io/hello-word3.html" data-id="ckibk0v880000xsvdb5jk94nb" class="article-share-link">Share</a>
+      <a data-url="https://yanhaochenzuiniubi.github.io/hello-word3.html" data-id="ckibk43o30000ccvdc49rh46d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows-Server-2012R-IE%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%A2%9E%E5%BC%BA%E6%9C%8D%E5%8A%A1/" rel="tag">Windows Server 2012R IE浏览器的增强服务</a></li></ul>
@@ -213,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yanhaochenzuiniubi.github.io/hello-world2.html" data-id="ckibk0v8x0004xsvd58jh4r1t" class="article-share-link">Share</a>
+      <a data-url="https://yanhaochenzuiniubi.github.io/hello-world2.html" data-id="ckibk43om0003ccvdcxjs70rr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -302,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yanhaochenzuiniubi.github.io/hello-world.html" data-id="ckibk0v8k0001xsvdbkwzcf0j" class="article-share-link">Share</a>
+      <a data-url="https://yanhaochenzuiniubi.github.io/hello-world.html" data-id="ckibk43oe0001ccvd6osg5d9i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -344,7 +400,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
     </div>
   </div>
 
@@ -355,6 +411,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/hello-world5.html">本教程告诉你Windows10如何进行宽带的开机自连</a>
+          </li>
         
           <li>
             <a href="/hello-world4.html">如何安装jdk</a>
